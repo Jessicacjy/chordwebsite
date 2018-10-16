@@ -1,0 +1,27 @@
+//index.js
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script type="text/javascript" src = "js/ecpm_audience_full.csv"></script>
+<script type = "text/javascript" src= "//stardustjs.github.io/stardust/v0.1.1/stardust.bundle.min.js"></script>
+<canvas id="main-canvas"></canvas>
+<script type="text/javascript">
+    // Get our canvas element
+    var canvas = document.getElementById("main-canvas");
+    var width = 960;
+    var height = 500;
+
+    // Create a WebGL 2D platform on the canvas:
+    var platform = Stardust.platform("webgl-2d", canvas, width, height);
+
+    var data;
+
+    csv_file_name = "webgl-2d";
+    d3.csv(csv_file_name, function(error, raw_data) {
+		data = raw_data.map(function(d) {
+		    for (var k in d) { if (!_.isNaN(raw_data[0][k] - 0)) {
+		        d[k] = parseFloat(d[k]) || 0;
+		      }};
+	    //console.log(d)
+	    return d;
+	});
+</script>
